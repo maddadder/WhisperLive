@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  whisperlive:
+    image: 192.168.8.129:32000/whisperlive-gpu:1.0.37
+    build: .
+    container_name: whisperlive
+    restart: unless-stopped
+    ports:
+      - "9090:9090"  # WebSocket server port
+    environment:
+      - WHISPER_BACKEND=faster_whisper
+      - MODEL_NAME=medium
+      - DEVICE=cuda
+      - COMPUTE_TYPE=float16
+      - BEAM_SIZE=5
+      - VAD_THRESHOLD=0.5
+      - CLIP_AUDIO=10
+      - MAX_CLIENTS=4
+      - PORT=9090
+      - OMP_NUM_THREADS=4
+    command: [
+      "python",
+      "run_server.py",
+      "--max_connection_time", "57600"
+    ]
+    volumes:
+      - whisper-models:/root/.cache/whisper
+    # For GPU support (uncomment below)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
+    runtime: nvidia  # Requires NVIDIA Container Toolkit
+volumes:
+  whisper-models:
