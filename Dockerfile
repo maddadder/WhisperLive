@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir -U "pip>=24"
 WORKDIR /app
 
 # Copy only the necessary files for the nvidia libraries; this can help with caching
-COPY models/whisper-medium /app/models/whisper-medium
+COPY models/large-v3-turbo /app/models/large-v3-turbo
 
 # Copy only the requirements file first, and install the dependencies
 COPY requirements/server.txt /app/

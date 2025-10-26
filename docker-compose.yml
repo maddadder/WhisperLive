@@ -10,9 +10,9 @@ services:
       - "9090:9090"  # WebSocket server port
     environment:
       - WHISPER_BACKEND=faster_whisper
-      - MODEL_NAME=medium
+      - MODEL_NAME=large-v3-turbo
       - DEVICE=cuda
-      - COMPUTE_TYPE=float16
+      - COMPUTE_TYPE=float32
       - BEAM_SIZE=5
       - VAD_THRESHOLD=0.5
       - CLIP_AUDIO=10

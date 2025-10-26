@@ -24,7 +24,7 @@ class AudioWebSocket: NSObject, URLSessionWebSocketDelegate {
     var onServerReady: (() -> Void)?
     var onTranscriptionReceived: ((String) -> Void)?
 
-    init(host: String, port: Int, modelSize: String = "medium") {
+    init(host: String, port: Int, modelSize: String = "large-v3-turbo") {
         self.host = host
         self.port = port
         self.uid = UUID().uuidString
