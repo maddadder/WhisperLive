@@ -29,4 +29,4 @@ model = WhisperModel("/app/models/whisper-turbo")
 
 
 docker compose build
-docker push 192.168.8.129:32000/whisperlive-gpu:1.0.37
+docker push 192.168.8.103:32000/whisperlive-gpu:1.0.37
